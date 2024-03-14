@@ -3,6 +3,15 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
+    "baseUrl": "./src/",
+    /*esto lo q hace es ponerle alias a las carpetas */
+    "paths": {
+      "@api/*": ["app/api/*"],
+      "@features/*": ["app/features/*"],
+      "@shared/*": ["app/shared/*"],
+      "@models/*": ["app/models/*"],
+      "@envs/*": ["environments/*"],
+    },
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
