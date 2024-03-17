@@ -12,4 +12,5 @@ export interface Product{
     rating: Rating;
     qty: number;
     subTotal: number;
+    category: string
 }

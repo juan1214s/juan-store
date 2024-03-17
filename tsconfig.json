@@ -11,6 +11,7 @@
       "@shared/*": ["app/shared/*"],
       "@models/*": ["app/models/*"],
       "@envs/*": ["environments/*"],
+      "@rating/*": ["app/rating"]
     },
     "forceConsistentCasingInFileNames": true,
     "strict": true,

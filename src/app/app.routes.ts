@@ -3,11 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
     {
         //esto devuelve una promesa q se ahorra poniendo el default en el component
-        path: 'products', loadComponent: ()=> import('./features/products/products.component')
-    },
-    {
-        //esto devuelve una promesa q se ahorra poniendo el default en el component
-        path: 'products-details/:id', loadComponent: ()=> import('./features/products/details/details.component')
+        path: 'products', loadChildren: ()=> import('./features/products/products.route')
     },
     {
         //esto devuelve una promesa q se ahorra poniendo el default en el component
