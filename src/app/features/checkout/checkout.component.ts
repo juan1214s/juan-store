@@ -11,18 +11,21 @@ import CheckoutServices from './checkout.services.ts.service';
   styleUrl: './checkout.component.scss'
 })
 export default class CheckoutComponent {
+  
 carStore = inject(CarStore);
 
 private readonly _checkoutService = inject(CheckoutServices)
 
-onProcededToPay(){
-
+onProcededToPay():  void{
+  //aca le estoy pasando los productos
+    this._checkoutService.onProcededToPay(this.carStore.products())
 }
   
-deleteProduct(id: number){
-
+deleteProduct(id: number): void{
+  this.carStore.deleteProduct(id)
 }
 
-limpiarCart(){}
-
+limpiarCart(): void{
+  this.carStore.limpiarCart()
+}
 }

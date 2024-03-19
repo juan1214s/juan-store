@@ -1,4 +1,4 @@
-import { computed } from '@angular/core';
+import { computed, inject } from '@angular/core';
 import {
   patchState,
   signalStore,
@@ -7,6 +7,7 @@ import {
   withState,
 } from '@ngrx/signals';
 import { Product } from '@shared/models/product.interface';
+import { ToastrService } from 'ngx-toastr';
 
 export interface CarStore {
   products: Product[];
@@ -33,7 +34,7 @@ export const CarStore = signalStore(
   })),
 
   //aca van los metodos q van permitir agregar, eliminar productos a mi carrito
-  withMethods(({ products, ...store }) => ({
+  withMethods(({ products, ...store }, toastSvc = inject(ToastrService)) => ({
     agregarCart(product: Product) {
       //si el producto esta presente lo devuelve
       const isProductCart = products().find(
@@ -52,15 +53,18 @@ export const CarStore = signalStore(
         //aca crea un nuevo array con el producto q pase por los parametros
         patchState(store, { products: [...products(), product] });
       }
-      
+      //muestra una notificacion 
+      toastSvc.success('Product added', 'JUAN STORE');
     },
     
     deleteProduct(id: number) {
       //mostrara todos los productos menos el q se paso por parametros
       const actualizaProducts = products().filter(
-        (product) => product.id === id
+        (product) => product.id !== id
       );
       patchState(store, { products: actualizaProducts });
+       //muestra una notificacion 
+      toastSvc.info('Product deleted', 'JUAN STORE');
     },
 
     limpiarCart() {
